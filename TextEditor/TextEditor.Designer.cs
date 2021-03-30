@@ -32,6 +32,15 @@ namespace TextEditor
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextEditor));
             this.rtb_editor = new System.Windows.Forms.RichTextBox();
+            this.cms_rightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsi_cancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmsi_cut = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsi_copy = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsi_paste = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsi_delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmsi_selectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msi_newFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,22 +78,13 @@ namespace TextEditor
             this.panel_zoom = new System.Windows.Forms.Panel();
             this.lbl_zoom = new System.Windows.Forms.Label();
             this.listener = new System.Windows.Forms.Timer(this.components);
-            this.cms_rightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmsi_cancel = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsi_cut = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsi_copy = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsi_paste = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsi_delete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsi_selectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_rightClick.SuspendLayout();
             this.ms_menu.SuspendLayout();
             this.panel_stateBar.SuspendLayout();
             this.panel_informations.SuspendLayout();
             this.panel_encoding.SuspendLayout();
             this.panel_cursorPosition.SuspendLayout();
             this.panel_zoom.SuspendLayout();
-            this.cms_rightClick.SuspendLayout();
             this.SuspendLayout();
             // 
             // rtb_editor
@@ -106,6 +106,71 @@ namespace TextEditor
             this.rtb_editor.Text = "";
             this.rtb_editor.WordWrap = false;
             this.rtb_editor.TextChanged += new System.EventHandler(this.rtb_editor_TextChanged);
+            // 
+            // cms_rightClick
+            // 
+            this.cms_rightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsi_cancel,
+            this.toolStripSeparator5,
+            this.cmsi_cut,
+            this.cmsi_copy,
+            this.cmsi_paste,
+            this.cmsi_delete,
+            this.toolStripSeparator6,
+            this.cmsi_selectAll});
+            this.cms_rightClick.Name = "cms_rightClick";
+            this.cms_rightClick.Size = new System.Drawing.Size(165, 148);
+            // 
+            // cmsi_cancel
+            // 
+            this.cmsi_cancel.Name = "cmsi_cancel";
+            this.cmsi_cancel.Size = new System.Drawing.Size(164, 22);
+            this.cmsi_cancel.Text = "Annuler";
+            this.cmsi_cancel.Click += new System.EventHandler(this.annulerText);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(161, 6);
+            // 
+            // cmsi_cut
+            // 
+            this.cmsi_cut.Name = "cmsi_cut";
+            this.cmsi_cut.Size = new System.Drawing.Size(164, 22);
+            this.cmsi_cut.Text = "Couper";
+            this.cmsi_cut.Click += new System.EventHandler(this.cutText);
+            // 
+            // cmsi_copy
+            // 
+            this.cmsi_copy.Name = "cmsi_copy";
+            this.cmsi_copy.Size = new System.Drawing.Size(164, 22);
+            this.cmsi_copy.Text = "Copier";
+            this.cmsi_copy.Click += new System.EventHandler(this.copyText);
+            // 
+            // cmsi_paste
+            // 
+            this.cmsi_paste.Name = "cmsi_paste";
+            this.cmsi_paste.Size = new System.Drawing.Size(164, 22);
+            this.cmsi_paste.Text = "Coller";
+            this.cmsi_paste.Click += new System.EventHandler(this.pasteText);
+            // 
+            // cmsi_delete
+            // 
+            this.cmsi_delete.Name = "cmsi_delete";
+            this.cmsi_delete.Size = new System.Drawing.Size(164, 22);
+            this.cmsi_delete.Text = "Supprimer";
+            this.cmsi_delete.Click += new System.EventHandler(this.deleteText);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(161, 6);
+            // 
+            // cmsi_selectAll
+            // 
+            this.cmsi_selectAll.Name = "cmsi_selectAll";
+            this.cmsi_selectAll.Size = new System.Drawing.Size(164, 22);
+            this.cmsi_selectAll.Text = "Tout sélectionner";
             // 
             // ms_menu
             // 
@@ -460,71 +525,6 @@ namespace TextEditor
             this.listener.Interval = 50;
             this.listener.Tick += new System.EventHandler(this.listener_Tick);
             // 
-            // cms_rightClick
-            // 
-            this.cms_rightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmsi_cancel,
-            this.toolStripSeparator5,
-            this.cmsi_cut,
-            this.cmsi_copy,
-            this.cmsi_paste,
-            this.cmsi_delete,
-            this.toolStripSeparator6,
-            this.cmsi_selectAll});
-            this.cms_rightClick.Name = "cms_rightClick";
-            this.cms_rightClick.Size = new System.Drawing.Size(165, 148);
-            // 
-            // cmsi_cancel
-            // 
-            this.cmsi_cancel.Name = "cmsi_cancel";
-            this.cmsi_cancel.Size = new System.Drawing.Size(164, 22);
-            this.cmsi_cancel.Text = "Annuler";
-            this.cmsi_cancel.Click += new System.EventHandler(this.annulerText);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(161, 6);
-            // 
-            // cmsi_cut
-            // 
-            this.cmsi_cut.Name = "cmsi_cut";
-            this.cmsi_cut.Size = new System.Drawing.Size(164, 22);
-            this.cmsi_cut.Text = "Couper";
-            this.cmsi_cut.Click += new System.EventHandler(this.cutText);
-            // 
-            // cmsi_copy
-            // 
-            this.cmsi_copy.Name = "cmsi_copy";
-            this.cmsi_copy.Size = new System.Drawing.Size(164, 22);
-            this.cmsi_copy.Text = "Copier";
-            this.cmsi_copy.Click += new System.EventHandler(this.copyText);
-            // 
-            // cmsi_paste
-            // 
-            this.cmsi_paste.Name = "cmsi_paste";
-            this.cmsi_paste.Size = new System.Drawing.Size(164, 22);
-            this.cmsi_paste.Text = "Coller";
-            this.cmsi_paste.Click += new System.EventHandler(this.pasteText);
-            // 
-            // cmsi_delete
-            // 
-            this.cmsi_delete.Name = "cmsi_delete";
-            this.cmsi_delete.Size = new System.Drawing.Size(164, 22);
-            this.cmsi_delete.Text = "Supprimer";
-            this.cmsi_delete.Click += new System.EventHandler(this.deleteText);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(161, 6);
-            // 
-            // cmsi_selectAll
-            // 
-            this.cmsi_selectAll.Name = "cmsi_selectAll";
-            this.cmsi_selectAll.Size = new System.Drawing.Size(164, 22);
-            this.cmsi_selectAll.Text = "Tout sélectionner";
-            // 
             // TextEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,6 +538,7 @@ namespace TextEditor
             this.Name = "TextEditor";
             this.Text = "TextEditor - New file";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TextEditor_FormClosing);
+            this.cms_rightClick.ResumeLayout(false);
             this.ms_menu.ResumeLayout(false);
             this.ms_menu.PerformLayout();
             this.panel_stateBar.ResumeLayout(false);
@@ -548,7 +549,6 @@ namespace TextEditor
             this.panel_cursorPosition.PerformLayout();
             this.panel_zoom.ResumeLayout(false);
             this.panel_zoom.PerformLayout();
-            this.cms_rightClick.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
