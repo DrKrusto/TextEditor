@@ -1,5 +1,7 @@
 # TextEditor
 
+## TextEditor est une réplique de l'application de traitement Bloc-note de Windows.
+
 - [TextEditor](#texteditor)
   - [Présentation](#présentation)
   - [Interface](#interface)
